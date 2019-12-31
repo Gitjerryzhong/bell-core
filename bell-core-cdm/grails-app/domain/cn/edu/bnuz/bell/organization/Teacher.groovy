@@ -42,7 +42,6 @@ class Teacher {
      */
     String academicTitle
 
-
     /**
      * 教师级别
      */
@@ -74,7 +73,7 @@ class Teacher {
     LocalDate dateGraduated
 
     /**
-     * 简介
+     * 简历
      */
     String resume
 
@@ -84,7 +83,7 @@ class Teacher {
     Boolean hasQualification
 
     /**
-     * 在职类别
+     * 岗位类别
      */
     String postType
 
@@ -104,9 +103,24 @@ class Teacher {
     Boolean atSchool
 
     /**
+     * 身份证号
+     */
+    String identityNumber
+
+    /**
      * 是否具有指导学生毕业设计资格
      */
     Boolean canGuidanceGraduate
+
+    /**
+     * 人事职工号
+     */
+    String humanResourceNumber
+
+    /**
+     * 相对系统教务职工号
+     */
+    String oppositeNumber
 
     /**
      * 所属部门
@@ -133,11 +147,14 @@ class Teacher {
         dateGraduated         comment: '毕业时间'
         resume                length: 2000, comment: '简历'
         postType              length: 10, comment: '岗位类别'
+        identityNumber        type: "text", comment: '身份证号'
         hasQualification      defaultValue: "false", comment: '是否具有教师资格'
         isLabTechnician       defaultValue: "false", comment: '是否为实验员'
         isExternal            defaultValue: "false", comment: '是否为外聘教师'
         atSchool              defaultValue: "false", comment: '是否在校'
         canGuidanceGraduate   defaultValue: "false", comment: '是否可以指导毕业设计'
+        humanResourceNumber   type: "text", comment: '人事职工号'
+        oppositeNumber        type: "text", comment: '相对系统教务职工号'
         department            comment: '所在部门'
     }
 
@@ -155,13 +172,16 @@ class Teacher {
         dateGraduated         nullable: true
         resume                nullable: true, maxSize: 2000
         postType              nullable: true, maxSize: 10
+        identityNumber        nullable: true
+        humanResourceNumber   nullable: true
+        oppositeNumber        nullable: true
     }
 
     /**
      * 是否为班主任
      */
     boolean isHeadTeacher() {
-        return AdminClass.countByHeadTeacher(this)    > 0
+        return AdminClass.countByHeadTeacher(this) > 0
     }
 
     /**
